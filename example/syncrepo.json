@@ -1,0 +1,14 @@
+{
+  "Test": {
+    "origin": "https://github.com/shaon/Test.git",
+    "upstream": "git@git.qa1.eucalyptus-systems.com:shaon/test.git"
+  },
+  "eutester": {
+    "origin": "https://github.com/eucalyptus/eutester.git",
+    "upstream": "git@git.qa1.eucalyptus-systems.com:shaon/eutester.git"
+  },
+  "ceph-deploy": {
+    "origin": "https://github.com/shaon/ceph-deploy.git",
+    "upstream": "git@git.qa1.eucalyptus-systems.com:shaon/ceph-deploy.git"
+  }
+}
