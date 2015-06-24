@@ -21,23 +21,23 @@ class CommandManager(object):
 class SyncRepo(object):
     def __init__(self, repo, name):
         self.name = name
-        self.origin_repo = repo['origin']
-        self.upstream_repo = repo['upstream']
+        self.github_repo = repo['github']
+        self.internal_repo = repo['internal']
         self.saved_path = os.getcwd()
 
     def run_sync(self, remote_name='upstream'):
-        repo_manager = RepoManager(origin_repo=self.origin_repo, repo_name=self.name)
+        repo_manager = RepoManager(github_repo=self.github_repo, repo_name=self.name)
         repo_manager.get_master_repo()
-        repo_manager.add_remote_repository(remote_name, self.upstream_repo)
+        repo_manager.add_remote_repository(remote_name, self.internal_repo)
         repo_manager.push_to_remotes(remote_name)
         os.chdir(self.saved_path)
 
 
 class RepoManager(object):
     def __init__(self,
-                 origin_repo=None,
+                 github_repo=None,
                  repo_name=None):
-        self.origin_repo = origin_repo
+        self.github_repo = github_repo
         self.name = repo_name
 
         self.all_branches = None
@@ -46,7 +46,7 @@ class RepoManager(object):
         self.inactive_branches = None
 
     def get_master_repo(self):
-        cmd = CommandManager("git clone " + self.origin_repo)
+        cmd = CommandManager("git clone " + self.github_repo)
         cmd.execute()
         os.chdir(self.name)
 
